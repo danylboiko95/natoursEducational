@@ -19,9 +19,9 @@
         height: 95vh;
     }
     
-    @media (min-resolution: 192dpi/*плотность */) and (min-width: 37.5em),
-           (-webkit-min-device-ratio: 2) and (min-width: 37.5em),//сафари 2х
-    (min-width: 125px){
+    @media only screen and (min-resolution: 192dpi/*плотность */) and (min-width: 37.5em),
+           only screen and (-webkit-min-device-ratio: 2) and (min-width: 37.5em),//сафари 2х
+           only screen and (min-width: 125em){
         background-image: linear-gradient(
         to right bottom,
         rgba($color-primary-light, 0.8),
