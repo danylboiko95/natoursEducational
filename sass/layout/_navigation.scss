@@ -1,0 +1,162 @@
+.navigation{
+    
+
+    &__checkbox{
+        display: none;//прячем checkbox
+    }
+
+    &__button{
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        text-align: center;
+        cursor: pointer;
+
+        @include respond(tab-port){
+            top: 4rem;
+            right: 4rem;
+        }
+        @include respond(phone){
+            top: 3rem;
+            right: 3rem;
+        }
+    }
+
+    &__background{
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;//всегда фиксированно
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+        z-index: 1000;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        
+        transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);//кастомная анимация
+
+       //transform: scale(80);
+       @include respond(tab-port){
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+       @include respond(phone){
+            top: 3.5rem;
+            right: 3.5rem;
+        }
+
+    }
+
+    &__nav{
+        height: 100vh;//vieportHeight
+        
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1500;
+        
+        opacity: 0;
+        width: 0;
+        transition: all .7s;
+
+    }
+    &__list{
+        @include absoluteCenter;
+        list-style: none;
+        text-align: center;
+        width: 100%;
+    }
+    &__item{
+        margin: 1rem;
+    }
+    &__link{
+        &:link,
+        &:visited{
+        display: inline-block;
+        font-size: 3rem;
+        font-weight: 300;
+        padding: 1rem 2rem;
+        color: $color-white;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+        background-size: 240%;//мы увеличиваем нащ размер и получается, что белая часть за нашим боксом
+        //а при hover мы сдвигаем его на 100% влева, и заполняем не прозрачным, а белмы цветом
+        transition: all .4s;
+        
+            span{
+                margin-right: 1.5rem;
+                display: inline-block;
+            }
+        }
+
+        &:hover,
+        &:active{
+            background-position: 100%;
+            color: $color-primary;
+            transform: translateX(2rem);
+        }
+    }
+
+    //Functionality
+
+    &__checkbox:checked ~ &__background{//Если чекнут checkbox , то мы у background увеличаивамем картинку
+        transform: scale(80);
+    }
+    &__checkbox:checked ~ &__nav{//Если чекнут checkbox , то мы у background увеличаивамем картинку
+        opacity: 1;
+        width: 100%;
+    }
+
+    //ICON
+    &__icon{
+        position: relative;
+        margin-top: 3.35rem;
+        &,
+        &::before,
+        &::after{//создаем наш "бургер"
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+        }
+        &::before,
+        &::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+        &::before{
+            top: -.8rem;
+            //transform-origin: right;//меняется центр поворота
+        }
+        &::after{
+            top: .8rem;
+            //transform-origin: left;//меняется центр поворота
+        }
+    }
+    &__button:hover &__icon::before{
+        top: -1.1rem;
+    }
+    &__button:hover &__icon::after{
+        top: 1.1rem;
+    }
+    &__checkbox:checked ~ &__button/*выбрали брата*/ &__icon {
+        background-color: transparent;
+        
+    }
+    &__checkbox:checked ~ &__button/*выбрали брата*/ &__icon::before {
+        top: 0;
+        transform: rotate(135deg);
+    }
+    &__checkbox:checked ~ &__button/*выбрали брата*/ &__icon::after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+}

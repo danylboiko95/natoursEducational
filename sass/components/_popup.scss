@@ -1,0 +1,121 @@
+.popup{
+    background-color: rgba($color-black, .8);
+    width: 100%;
+    height: 100vh;
+    z-index: 5000;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .3s;
+    
+    
+
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)){//ниже код будет работать если условия ок
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);//размытие
+        background-color: rgba($color-black, .3);
+    }
+
+
+    &__content{   
+        width: 75%;       
+        box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+        @include absoluteCenter;
+        background-color: $color-white;  
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate (-50%, -50%) scale(.25);
+        transition: all .5s .2s;
+    }
+
+    &__left{
+        width: 33.333333%;
+        display: table-cell;//ячейка таблцы, значит у них одна высота
+        @include respond(tab-port){
+            display: block;
+           
+            //transform: translate(-50%, -50%);     
+            width: 100%;
+            
+        }
+
+        @include respond(phone){
+            display: block;
+                
+                        
+        }
+    }
+    &__right{
+        width: 66.666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+        
+    }
+    &__img{
+        display: block;
+        width: 100%;
+        @include respond(tab-port){
+         display: inline-block;   
+         width: 45%;
+         height: 23rem;
+         
+        }
+        @include respond(phone){
+            display: none;
+            opacity: 0;
+            width: 0;   
+            
+            
+           }
+        
+    }
+    &__text{
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        column-count: 2; //количество колонок
+        column-gap: 4rem; //расстояние между колнками
+        -webkit-column-rule-color: 1px solid $color-grey-light-2; //граница между колонками
+        column-rule: 1px solid $color-grey-light-2; //граница между колонками
+/*переносы не работают
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        */
+    }
+
+    //начальное состояние
+    &:target{//когда мы переходим по #popup происходит следующее
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content{
+        opacity: 1;
+        transform: translate (-50%, -50%) scale(1);
+    }
+    &__close{
+        &:link,
+        &:visited{
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1;
+
+            &:hover{
+                color: $color-primary;
+            }
+        }
+    }
+}

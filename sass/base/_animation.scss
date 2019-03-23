@@ -1,0 +1,46 @@
+@keyframes moveInLeft{/*называем нашу анимацию как она будет двигаться*/
+    0%{/*начало и конец естесна*/
+
+        opacity : 0;
+        transform: translateX(-10rem);/*двигаем по оси Х отсоительно нашего изначального знчаения*/
+    }
+   
+   80%{
+       transform: translateX(1.5rem);
+   }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes moveInRight{/*называем нашу анимацию как она будет двигаться*/
+    0%{/*начало и конец естесна*/
+
+        opacity: 0;
+        transform: translateX(10rem);/*двигаем по оси Х отсоительно нашего изначального знчаения*/
+    }
+   
+    80%{
+        transform: translateX(-1.5rem);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes moveInBottom{/*называем нашу анимацию как она будет двигаться*/
+    0%{/*начало и конец естесна*/
+
+        opacity: 0;
+        transform: translateY(6rem);/*двигаем по оси Y отсоительно нашего изначального знчаения*/
+    }
+   
+   
+
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
